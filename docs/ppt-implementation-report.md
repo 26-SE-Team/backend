@@ -48,10 +48,11 @@
 | 회원탈퇴 처리 컬럼 없음 | `users.is_deleted`, `users.deleted_at` 추가 | `/api/users/me/delete` 구현 시 FK 보존을 위해 소프트 삭제 적용 |
 | 찜 중복 제약 없음 | `favorites(user_id, space_id)` UNIQUE 추가 | 같은 사용자가 같은 공간을 중복 찜하지 않도록 보장 |
 | 채팅방 중복 제약 없음 | `chat_rooms(space_id, tenant_id)` UNIQUE 추가 | 같은 공간-사용자 조합의 채팅방 중복 방지 |
+| 신고용 `report`, `notification` 테이블 | 신고/알림 테이블 제거, 공간 등록 리포트만 `reports`로 유지 | API 명세에 없는 신고/알림 기능을 제거하고, 공간 등록 시 생성되는 리포트 요구사항만 반영 |
 | 검색 인덱스 없음 | `spaces.status`, `room_type`, `deposit`, `monthly_rent` 인덱스 추가 | 공간 목록/검색 API 성능 고려 |
 | 일부 `updated_at` 없음 | `chat_rooms`, `favorites`, `three_d_models`에 `updated_at` 추가 | 공통 감사 필드(`BaseTimeEntity`)와 유지보수성 반영 |
 
-적용 SQL은 `src/main/resources/db/schema.sql`, 발표/시연용 샘플 데이터는 `src/main/resources/db/seed.sql`에 있습니다.
+적용 SQL은 `src/main/resources/db/schema.sql`, 발표/시연용 샘플 데이터는 `src/main/resources/db/seed.sql`에 있습니다. 운영 중인 Supabase DB에는 `src/main/resources/db/migrations/20260525_remove_notifications_update_reports.sql`로 알림/신고 구조 제거와 리포트 구조 변경을 반영했습니다.
 
 ## 5. 인증 구현 범위
 
@@ -87,10 +88,10 @@ user=postgres.ipethrelndzbgvmcstvr
 
 적용 결과:
 
-- 테이블 11개 생성 완료
+- 테이블 10개 생성 완료
 - 데모 사용자 3명 생성
 - 승인된 중개사 1명 생성
-- 데모 공간 1개, 이미지 2개, 찜 1개, 채팅방 1개, 채팅 메시지 2개 생성
+- 데모 공간 1개, 공간 등록 리포트 1개, 이미지 2개, 찜 1개, 채팅방 1개, 채팅 메시지 2개 생성
 
 ## 7. 검증
 

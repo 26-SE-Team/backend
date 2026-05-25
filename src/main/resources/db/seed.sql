@@ -51,6 +51,11 @@ VALUES
     (2, 1, 2, 'https://example.com/images/stayview-demo-2.jpg')
 ON CONFLICT (image_id) DO NOTHING;
 
+INSERT INTO reports (report_id, space_id, summary, created_at)
+VALUES
+    (1, 1, 'Registration report generated when the space was created.', NOW())
+ON CONFLICT (report_id) DO NOTHING;
+
 INSERT INTO favorites (favorite_id, user_id, space_id, created_at)
 VALUES
     (1, 3, 1, NOW())
@@ -70,6 +75,7 @@ ON CONFLICT (message_id) DO NOTHING;
 SELECT setval(pg_get_serial_sequence('users', 'user_id'), COALESCE((SELECT MAX(user_id) FROM users), 1), TRUE);
 SELECT setval(pg_get_serial_sequence('spaces', 'space_id'), COALESCE((SELECT MAX(space_id) FROM spaces), 1), TRUE);
 SELECT setval(pg_get_serial_sequence('space_images', 'image_id'), COALESCE((SELECT MAX(image_id) FROM space_images), 1), TRUE);
+SELECT setval(pg_get_serial_sequence('reports', 'report_id'), COALESCE((SELECT MAX(report_id) FROM reports), 1), TRUE);
 SELECT setval(pg_get_serial_sequence('favorites', 'favorite_id'), COALESCE((SELECT MAX(favorite_id) FROM favorites), 1), TRUE);
 SELECT setval(pg_get_serial_sequence('chat_rooms', 'chat_room_id'), COALESCE((SELECT MAX(chat_room_id) FROM chat_rooms), 1), TRUE);
 SELECT setval(pg_get_serial_sequence('chat_messages', 'message_id'), COALESCE((SELECT MAX(message_id) FROM chat_messages), 1), TRUE);

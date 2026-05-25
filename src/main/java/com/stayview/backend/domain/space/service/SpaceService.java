@@ -10,8 +10,10 @@ import com.stayview.backend.domain.space.dto.SpaceSearchCondition;
 import com.stayview.backend.domain.space.dto.SpaceUpdateRequest;
 import com.stayview.backend.domain.space.entity.Favorite;
 import com.stayview.backend.domain.space.entity.Space;
+import com.stayview.backend.domain.space.entity.SpaceReport;
 import com.stayview.backend.domain.space.entity.SpaceStatus;
 import com.stayview.backend.domain.space.repository.FavoriteRepository;
+import com.stayview.backend.domain.space.repository.SpaceReportRepository;
 import com.stayview.backend.domain.space.repository.SpaceRepository;
 import com.stayview.backend.domain.user.entity.User;
 import com.stayview.backend.domain.user.service.UserService;
@@ -28,17 +30,20 @@ import org.springframework.transaction.annotation.Transactional;
 public class SpaceService {
 
 	private final SpaceRepository spaceRepository;
+	private final SpaceReportRepository spaceReportRepository;
 	private final FavoriteRepository favoriteRepository;
 	private final AgentService agentService;
 	private final UserService userService;
 
 	public SpaceService(
 		SpaceRepository spaceRepository,
+		SpaceReportRepository spaceReportRepository,
 		FavoriteRepository favoriteRepository,
 		AgentService agentService,
 		UserService userService
 	) {
 		this.spaceRepository = spaceRepository;
+		this.spaceReportRepository = spaceReportRepository;
 		this.favoriteRepository = favoriteRepository;
 		this.agentService = agentService;
 		this.userService = userService;
@@ -60,7 +65,9 @@ public class SpaceService {
 			request.livingEnvironmentInfo()
 		);
 		space.replaceImages(request.imageUrls());
-		return SpaceResponse.from(spaceRepository.save(space), false);
+		Space savedSpace = spaceRepository.save(space);
+		spaceReportRepository.save(SpaceReport.registrationReport(savedSpace));
+		return SpaceResponse.from(savedSpace, false);
 	}
 
 	public List<SpaceResponse> search(SpaceSearchCondition condition, Long viewerId) {
