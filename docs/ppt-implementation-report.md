@@ -76,13 +76,21 @@ psql "$SUPABASE_DATABASE_URL" -f src/main/resources/db/schema.sql
 psql "$SUPABASE_DATABASE_URL" -f src/main/resources/db/seed.sql
 ```
 
-현재 전달받은 Supabase host는 DNS 조회가 되지 않아 실제 업로드가 차단되었습니다.
+Supabase Direct connection은 현재 환경의 IPv4 네트워크에서 접근할 수 없어, Supabase Shared Pooler(Session pooler) 연결 문자열로 적용했습니다.
 
 ```text
-db.ipethrelndzbgvmcstvr.supabase.co: nodename nor servname provided, or not known
+host=aws-1-ap-northeast-2.pooler.supabase.com
+port=5432
+database=postgres
+user=postgres.ipethrelndzbgvmcstvr
 ```
 
-Supabase Dashboard의 Project Settings > Database에서 최신 Direct connection 또는 Transaction pooler connection string을 다시 확인하면 바로 적용할 수 있습니다.
+적용 결과:
+
+- 테이블 11개 생성 완료
+- 데모 사용자 3명 생성
+- 승인된 중개사 1명 생성
+- 데모 공간 1개, 이미지 2개, 찜 1개, 채팅방 1개, 채팅 메시지 2개 생성
 
 ## 7. 검증
 
