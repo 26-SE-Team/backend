@@ -1,6 +1,6 @@
-package com.stayview.backend.domain.chat.dto;
+package com.stayview.backend.chat.dto;
 
-import com.stayview.backend.domain.chat.entity.ChatMessage;
+import com.stayview.backend.chat.entity.ChatMessage;
 import java.time.Instant;
 
 public record ChatMessageResponse(

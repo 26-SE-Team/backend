@@ -1,4 +1,4 @@
-package com.stayview.backend.domain.space.entity;
+package com.stayview.backend.space.entity;
 
 import com.stayview.backend.common.BaseTimeEntity;
 import jakarta.persistence.Column;

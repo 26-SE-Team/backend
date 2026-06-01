@@ -1,4 +1,4 @@
-package com.stayview.backend.domain.auth.dto;
+package com.stayview.backend.auth.dto;
 
 import com.stayview.backend.domain.user.dto.UserResponse;
 

@@ -1,8 +1,8 @@
-package com.stayview.backend.domain.space.dto;
+package com.stayview.backend.space.dto;
 
-import com.stayview.backend.domain.space.entity.Space;
-import com.stayview.backend.domain.space.entity.SpaceImage;
-import com.stayview.backend.domain.space.entity.SpaceStatus;
+import com.stayview.backend.space.entity.Space;
+import com.stayview.backend.space.entity.SpaceImage;
+import com.stayview.backend.space.entity.SpaceStatus;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.Comparator;

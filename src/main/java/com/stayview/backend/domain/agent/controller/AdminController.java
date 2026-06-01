@@ -1,10 +1,10 @@
-package com.stayview.backend.domain.admin.controller;
+package com.stayview.backend.agent.controller;
 
 import com.stayview.backend.common.response.ApiResponse;
-import com.stayview.backend.domain.agent.dto.AgentDecisionRequest;
-import com.stayview.backend.domain.agent.dto.AgentProfileResponse;
-import com.stayview.backend.domain.agent.entity.VerificationStatus;
-import com.stayview.backend.domain.agent.service.AdminAgentService;
+import com.stayview.backend.agent.dto.AgentDecisionRequest;
+import com.stayview.backend.agent.dto.AgentProfileResponse;
+import com.stayview.backend.agent.entity.VerificationStatus;
+import com.stayview.backend.agent.service.AdminAgentService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;

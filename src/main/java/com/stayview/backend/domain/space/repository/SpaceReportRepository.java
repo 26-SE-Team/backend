@@ -1,6 +1,6 @@
-package com.stayview.backend.domain.space.repository;
+package com.stayview.backend.space.repository;
 
-import com.stayview.backend.domain.space.entity.SpaceReport;
+import com.stayview.backend.space.entity.SpaceReport;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface SpaceReportRepository extends JpaRepository<SpaceReport, Long> {

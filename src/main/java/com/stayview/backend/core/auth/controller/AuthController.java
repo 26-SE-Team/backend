@@ -1,8 +1,8 @@
-package com.stayview.backend.domain.auth.controller;
+package com.stayview.backend.auth.controller;
 
 import com.stayview.backend.common.response.ApiResponse;
-import com.stayview.backend.domain.auth.dto.AuthResponse;
-import com.stayview.backend.domain.auth.service.AuthService;
+import com.stayview.backend.auth.dto.AuthResponse;
+import com.stayview.backend.auth.service.AuthService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

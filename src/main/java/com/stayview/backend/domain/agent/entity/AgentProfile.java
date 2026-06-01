@@ -1,4 +1,4 @@
-package com.stayview.backend.domain.agent.entity;
+package com.stayview.backend.agent.entity;
 
 import com.stayview.backend.common.BaseTimeEntity;
 import com.stayview.backend.domain.user.entity.User;
@@ -12,8 +12,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 
 @Entity
+@Getter
+@Builder
+@AllArgsConstructor
 @Table(name = "agent_profiles")
 public class AgentProfile extends BaseTimeEntity {
 
@@ -36,33 +42,6 @@ public class AgentProfile extends BaseTimeEntity {
 	@Column(name = "rejection_reason", length = 255)
 	private String rejectionReason;
 
-	protected AgentProfile() {
-	}
-
-	public AgentProfile(User user, String licenseNo) {
-		this.user = user;
-		this.licenseNo = licenseNo;
-	}
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public String getLicenseNo() {
-		return licenseNo;
-	}
-
-	public VerificationStatus getVerificationStatus() {
-		return verificationStatus;
-	}
-
-	public String getRejectionReason() {
-		return rejectionReason;
-	}
 
 	public void approve() {
 		this.verificationStatus = VerificationStatus.APPROVED;

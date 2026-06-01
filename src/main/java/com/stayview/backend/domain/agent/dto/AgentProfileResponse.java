@@ -1,7 +1,7 @@
-package com.stayview.backend.domain.agent.dto;
+package com.stayview.backend.agent.dto;
 
-import com.stayview.backend.domain.agent.entity.AgentProfile;
-import com.stayview.backend.domain.agent.entity.VerificationStatus;
+import com.stayview.backend.agent.entity.AgentProfile;
+import com.stayview.backend.agent.entity.VerificationStatus;
 import java.time.Instant;
 
 public record AgentProfileResponse(

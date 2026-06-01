@@ -1,4 +1,4 @@
-package com.stayview.backend.domain.agent.entity;
+package com.stayview.backend.agent.entity;
 
 public enum VerificationStatus {
 	PENDING,

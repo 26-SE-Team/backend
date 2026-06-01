@@ -1,9 +1,9 @@
-package com.stayview.backend.domain.agent.controller;
+package com.stayview.backend.agent.controller;
 
 import com.stayview.backend.common.response.ApiResponse;
-import com.stayview.backend.domain.agent.dto.AgentProfileRequest;
-import com.stayview.backend.domain.agent.dto.AgentProfileResponse;
-import com.stayview.backend.domain.agent.service.AgentService;
+import com.stayview.backend.agent.dto.AgentProfileRequest;
+import com.stayview.backend.agent.dto.AgentProfileResponse;
+import com.stayview.backend.agent.service.AgentService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

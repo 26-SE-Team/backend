@@ -1,12 +1,12 @@
-package com.stayview.backend.domain.space.controller;
+package com.stayview.backend.space.controller;
 
 import com.stayview.backend.common.response.ApiResponse;
-import com.stayview.backend.domain.space.dto.SpaceCreateRequest;
-import com.stayview.backend.domain.space.dto.SpaceResponse;
-import com.stayview.backend.domain.space.dto.SpaceSearchCondition;
-import com.stayview.backend.domain.space.dto.SpaceUpdateRequest;
-import com.stayview.backend.domain.space.entity.SpaceStatus;
-import com.stayview.backend.domain.space.service.SpaceService;
+import com.stayview.backend.space.dto.SpaceCreateRequest;
+import com.stayview.backend.space.dto.SpaceResponse;
+import com.stayview.backend.space.dto.SpaceSearchCondition;
+import com.stayview.backend.space.dto.SpaceUpdateRequest;
+import com.stayview.backend.space.entity.SpaceStatus;
+import com.stayview.backend.space.service.SpaceService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;

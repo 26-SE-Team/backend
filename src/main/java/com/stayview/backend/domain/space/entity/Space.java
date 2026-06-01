@@ -1,7 +1,7 @@
-package com.stayview.backend.domain.space.entity;
+package com.stayview.backend.space.entity;
 
 import com.stayview.backend.common.BaseTimeEntity;
-import com.stayview.backend.domain.user.entity.User;
+import com.stayview.backend.user.entity.User;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -69,111 +69,6 @@ public class Space extends BaseTimeEntity {
 	protected Space() {
 	}
 
-	public Space(
-		User agent,
-		String title,
-		String address,
-		Double area,
-		Integer deposit,
-		Integer monthlyRent,
-		Integer maintenanceFee,
-		String roomType,
-		LocalDate availableDate,
-		String livingEnvironmentInfo
-	) {
-		this.agent = agent;
-		this.title = title;
-		this.address = address;
-		this.area = area;
-		this.deposit = deposit;
-		this.monthlyRent = monthlyRent;
-		this.maintenanceFee = maintenanceFee;
-		this.roomType = roomType;
-		this.availableDate = availableDate;
-		this.livingEnvironmentInfo = livingEnvironmentInfo;
-	}
-
-	public Long getSpaceId() {
-		return spaceId;
-	}
-
-	public User getAgent() {
-		return agent;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public Double getArea() {
-		return area;
-	}
-
-	public Integer getDeposit() {
-		return deposit;
-	}
-
-	public Integer getMonthlyRent() {
-		return monthlyRent;
-	}
-
-	public Integer getMaintenanceFee() {
-		return maintenanceFee;
-	}
-
-	public String getRoomType() {
-		return roomType;
-	}
-
-	public LocalDate getAvailableDate() {
-		return availableDate;
-	}
-
-	public SpaceStatus getStatus() {
-		return status;
-	}
-
-	public String getLivingEnvironmentInfo() {
-		return livingEnvironmentInfo;
-	}
-
-	public List<SpaceImage> getImages() {
-		return images;
-	}
-
-	public void update(
-		String title,
-		String address,
-		Double area,
-		Integer deposit,
-		Integer monthlyRent,
-		Integer maintenanceFee,
-		String roomType,
-		LocalDate availableDate,
-		SpaceStatus status,
-		String livingEnvironmentInfo
-	) {
-		if (title != null && !title.isBlank()) {
-			this.title = title;
-		}
-		if (address != null && !address.isBlank()) {
-			this.address = address;
-		}
-		this.area = area;
-		this.deposit = deposit;
-		this.monthlyRent = monthlyRent;
-		this.maintenanceFee = maintenanceFee;
-		this.roomType = roomType;
-		this.availableDate = availableDate;
-		if (status != null) {
-			this.status = status;
-		}
-		this.livingEnvironmentInfo = livingEnvironmentInfo;
-	}
 
 	public void replaceImages(List<String> imageUrls) {
 		images.clear();

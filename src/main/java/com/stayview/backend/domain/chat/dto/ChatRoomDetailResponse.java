@@ -1,4 +1,4 @@
-package com.stayview.backend.domain.chat.dto;
+package com.stayview.backend.chat.dto;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package com.stayview.backend.domain.agent.service;
+package com.stayview.backend.agent.service;
 
 import com.stayview.backend.common.error.BusinessException;
 import com.stayview.backend.common.error.ErrorCode;
-import com.stayview.backend.domain.agent.dto.AgentProfileRequest;
-import com.stayview.backend.domain.agent.dto.AgentProfileResponse;
-import com.stayview.backend.domain.agent.entity.AgentProfile;
-import com.stayview.backend.domain.agent.repository.AgentProfileRepository;
+import com.stayview.backend.agent.dto.AgentProfileRequest;
+import com.stayview.backend.agent.dto.AgentProfileResponse;
+import com.stayview.backend.agent.entity.AgentProfile;
+import com.stayview.backend.agent.repository.AgentProfileRepository;
 import com.stayview.backend.domain.user.entity.User;
 import com.stayview.backend.domain.user.service.UserService;
 import org.springframework.stereotype.Service;

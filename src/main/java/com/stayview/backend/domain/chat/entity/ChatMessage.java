@@ -1,6 +1,6 @@
-package com.stayview.backend.domain.chat.entity;
+package com.stayview.backend.chat.entity;
 
-import com.stayview.backend.domain.user.entity.User;
+import com.stayview.backend.user.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,9 +11,16 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
 import java.time.Instant;
 
 @Entity
+@Getter
+@Builder
+@AllArgsConstructor
 @Table(name = "chat_messages")
 public class ChatMessage {
 

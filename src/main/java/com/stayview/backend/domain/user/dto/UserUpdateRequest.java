@@ -1,4 +1,4 @@
-package com.stayview.backend.domain.user.dto;
+package com.stayview.backend.user.dto;
 
 import jakarta.validation.constraints.Size;
 

@@ -1,4 +1,4 @@
-package com.stayview.backend.domain.space.dto;
+package com.stayview.backend.space.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;

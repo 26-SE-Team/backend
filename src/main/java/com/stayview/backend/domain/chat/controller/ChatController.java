@@ -1,11 +1,11 @@
-package com.stayview.backend.domain.chat.controller;
+package com.stayview.backend.chat.controller;
 
 import com.stayview.backend.common.response.ApiResponse;
-import com.stayview.backend.domain.chat.dto.ChatMessageRequest;
-import com.stayview.backend.domain.chat.dto.ChatMessageResponse;
-import com.stayview.backend.domain.chat.dto.ChatRoomDetailResponse;
-import com.stayview.backend.domain.chat.dto.ChatRoomSummaryResponse;
-import com.stayview.backend.domain.chat.service.ChatService;
+import com.stayview.backend.chat.dto.ChatMessageRequest;
+import com.stayview.backend.chat.dto.ChatMessageResponse;
+import com.stayview.backend.chat.dto.ChatRoomDetailResponse;
+import com.stayview.backend.chat.dto.ChatRoomSummaryResponse;
+import com.stayview.backend.chat.service.ChatService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;

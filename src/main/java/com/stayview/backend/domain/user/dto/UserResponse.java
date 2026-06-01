@@ -1,8 +1,8 @@
-package com.stayview.backend.domain.user.dto;
+package com.stayview.backend.user.dto;
 
-import com.stayview.backend.domain.user.entity.SocialType;
-import com.stayview.backend.domain.user.entity.User;
-import com.stayview.backend.domain.user.entity.UserRole;
+import com.stayview.backend.user.entity.SocialType;
+import com.stayview.backend.user.entity.User;
+import com.stayview.backend.user.entity.UserRole;
 import java.time.Instant;
 
 public record UserResponse(

@@ -1,6 +1,6 @@
-package com.stayview.backend.domain.space.dto;
+package com.stayview.backend.space.dto;
 
-import com.stayview.backend.domain.space.entity.SpaceStatus;
+import com.stayview.backend.space.entity.SpaceStatus;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import java.time.LocalDate;
