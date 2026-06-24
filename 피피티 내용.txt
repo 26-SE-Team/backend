@@ -1,0 +1,367 @@
+
+1. Architecture Design PPT 핵심
+
+이 PPT는 한 문장으로 요약하면:
+
+> “큰 시스템을 역할별로 잘 나누고, 서로 어떻게 연결되는지 설계하는 방법”
+
+입니다.
+
+수업에서 제일 중요한 키워드는 이거임:
+
+```text
+구조 분리
+역할 분리
+책임 분리
+```
+
+---
+
+(1) Client-Server Architecture
+
+너희 프로젝트가 딱 이 구조입니다.
+
+```text
+React App (Client)
+      ↓ HTTP API
+Spring Server (Server)
+      ↓
+Database
+```
+
+클라이언트:
+
+* 화면 보여줌
+* 버튼 클릭
+* 사용자 입력
+
+서버:
+
+* 데이터 관리
+* 로그인 처리
+* DB 저장
+
+즉:
+“화면”과 “데이터 처리”를 분리.
+
+수업에서는:
+
+* 중앙 데이터 관리
+* 보안
+* 유지보수
+  장점 강조함
+
+---
+
+(2) Layered Architecture
+
+이게 Spring에서 제일 중요.
+
+백엔드를 여러 층으로 나누는 거임.
+
+```text
+Controller
+↓
+Service
+↓
+Repository
+↓
+DB
+```
+
+각 층 역할:
+
+| Layer      | 역할    |
+| ---------- | ----- |
+| Controller | 요청 받기 |
+| Service    | 핵심 로직 |
+| Repository | DB 접근 |
+
+왜 이렇게 하냐?
+
+유지보수하려고.
+
+예:
+
+* DB 바뀌어도 Service 안 건드림
+* UI 바뀌어도 DB 안 건드림
+
+즉 “결합도 낮추기”.
+
+PPT에서도:
+
+* Encapsulation
+* Reusability
+* High cohesion
+  강조함
+
+---
+
+(3) MVC
+
+MVC는 UI와 로직을 분리하는 구조.
+
+```text
+View = React 화면
+Controller = API 입구
+Model = 데이터 + 로직
+```
+
+너희 프로젝트에선:
+
+```text
+React
+↓
+RoomController
+↓
+RoomService
+↓
+Room Entity
+```
+
+정도로 보면 됨.
+
+---
+
+(4) Design Pattern
+
+여기서 교수님이 좋아할 포인트 있음.
+
+“패턴을 적용했다.”
+
+실제로 Spring 자체가 패턴 덩어리임.
+
+예:
+
+| 패턴                 | 실제 사용                |
+| ------------------ | -------------------- |
+| Repository Pattern | JpaRepository        |
+| DTO Pattern        | Request/Response DTO |
+| Singleton          | Spring Bean          |
+| Factory            | Bean 생성              |
+| Observer           | EventListener        |
+
+즉:
+“우리가 일부 패턴을 적용했다”
+라고 보고서에 쓰면 됨.
+
+---
+
+(5) Architecture 핵심 메시지
+
+이 PPT 전체 핵심은:
+
+```text
+좋은 소프트웨어는
+기능보다 구조가 중요하다
+```
+
+입니다.
+
+교수는:
+
+* “왜 저 구조로 나눴는가?”
+  를 좋아함.
+
+---
+
+# 2. Coding PPT 핵심
+
+이 PPT는:
+
+> “좋은 구조를 실제 코드로 어떻게 구현할까?”
+
+입니다.
+
+즉 Architecture가 설계도면,
+Coding은 실제 시공.
+
+---
+
+(1) Coding Standard
+
+팀플에서 매우 중요.
+
+왜?
+6명이 각자 스타일 다르면 지옥 됨.
+
+그래서:
+
+* CamelCase
+* 메서드 규칙
+* DTO 이름
+* 패키지 구조
+  통일.
+
+예:
+
+```java
+getUserById()
+saveRoom()
+isDeleted()
+```
+
+---
+
+(2) Readability / Maintainability
+
+교수님 핵심 키워드.
+
+코드는:
+
+* 짧고
+* 명확하고
+* 역할 분리되어야 함
+
+즉:
+
+❌
+
+```java
+Controller에서 DB조회 다 함
+```
+
+⭕
+
+```java
+Controller → Service → Repository
+```
+
+---
+
+(3) DTO Pattern
+
+이거 매우 중요.
+
+PPT에서:
+“직접 내부 구조 노출하지 말라”
+느낌이 계속 나옴.
+
+그래서:
+
+❌
+
+```java
+return RoomEntity;
+```
+
+⭕
+
+```java
+return RoomResponseDto;
+```
+
+이렇게 함.
+
+이유:
+
+* 보안
+* 유지보수
+* API 안정성
+
+---
+
+(4) Error Handling
+
+예외 처리.
+
+```java
+if (room == null)
+```
+
+이런 거 처리하라는 거.
+
+Spring에서는 보통:
+
+```java
+GlobalExceptionHandler
+```
+
+씀.
+
+---
+
+(5) Javadoc / 주석
+
+보고서용으로 매우 좋음.
+
+예:
+
+```java
+/**
+ * 매물 목록 조회 API
+ */
+@GetMapping("/rooms")
+```
+
+이런 거 있으면:
+“코딩 표준 반영”
+느낌 강함.
+
+PPT에서도 Javadoc 강조함
+
+---
+
+(6) Refactoring
+
+핵심:
+
+```text
+동작은 그대로
+구조만 개선
+```
+
+예:
+
+처음:
+
+```java
+UserController 안에 로직 다 있음
+```
+
+리팩토링 후:
+
+```text
+Controller
+Service
+Repository
+```
+
+분리.
+
+---
+
+(7) Static Analysis / Inspection
+
+보고서용 키워드.
+
+예:
+
+* ESLint
+* SonarQube
+* 코드 리뷰
+* PR 리뷰
+
+같은 거.
+
+교수 좋아함.
+
+---
+
+3. 너희 프로젝트에 실제로 적용하면
+
+결론적으로 너희는 이렇게 말하면 됨.
+
+```text
+본 프로젝트는 React 기반 Client와 Spring Boot 기반 Server로 구성된 Client-Server Architecture를 사용하였다.
+
+백엔드는 Layered Architecture를 적용하여 Controller, Service, Repository 계층으로 역할을 분리하였다.
+
+또한 MVC 패턴을 기반으로 사용자 인터페이스와 비즈니스 로직을 분리하였다.
+
+유지보수성과 재사용성을 위해 DTO 패턴과 Repository 패턴을 사용하였으며, 코딩 표준과 Javadoc 주석 규칙을 적용하였다.
+```
+
+이 정도면 교수 입장에서:
+“아 얘네 수업 내용 이해했네”
+느낌 납니다.

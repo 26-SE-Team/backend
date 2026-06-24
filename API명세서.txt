@@ -1,0 +1,91 @@
+[Auth]
+
+GET    /api/auth/google
+- 구글 로그인
+
+GET    /api/auth/kakao
+- 카카오 로그인
+
+POST   /api/auth/logout
+- 로그아웃
+
+
+[User]
+
+GET    /api/users/me
+- 내 프로필 조회
+
+PATCH  /api/users/me
+- 내 프로필 수정
+
+PATCH  /api/users/me/delete
+- 회원탈퇴
+
+GET    /api/users/me/scraps
+- 찜한 공간 리스트 조회
+
+
+[Agent]
+
+GET    /api/users/me/agent-profile
+- 내 중개사 정보 조회
+
+POST   /api/users/me/agent-profile
+- 중개사 등록 신청
+
+DELETE /api/users/me/agent-profile
+- 중개사 등록 취소
+
+
+[Chat]
+
+GET    /api/chat
+- 내 채팅 목록 조회
+
+GET    /api/chat/{chatId}
+- 채팅 상세 조회
+
+POST   /api/chat/{chatId}
+- 채팅 전송
+
+
+[Admin]
+
+PATCH  /api/admin/agents/{userId}/approve
+- 중개사 인증 승인
+
+PATCH  /api/admin/agents/{userId}/reject
+- 중개사 인증 거절
+
+GET    /api/admin/agents
+- 중개사 목록 조회
+
+GET    /api/admin/agents/{userId}
+- 중개사 상세 조회
+
+
+[Space]
+
+POST   /api/spaces
+- 공간 등록
+
+GET    /api/spaces
+- 공간 목록 조회
+
+GET    /api/spaces/{spaceId}
+- 공간 상세 조회
+
+PATCH  /api/spaces/{spaceId}
+- 공간 정보 수정
+
+DELETE /api/spaces/{spaceId}
+- 공간 삭제
+
+POST   /api/spaces/{spaceId}/scrap
+- 공간 찜하기
+
+DELETE /api/spaces/{spaceId}/scrap
+- 공간 찜 취소
+
+GET    /api/spaces?조건들
+- 공간 검색

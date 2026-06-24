@@ -1,0 +1,179 @@
+CREATE TABLE `user` (
+    `user_id` BIGINT NOT NULL,
+    `social_type` ENUM('GOOGLE', 'KAKAO') NULL,
+    `google_email` VARCHAR(100) NULL,
+    `kakao_email` VARCHAR(100) NULL,
+    `name` VARCHAR(50) NOT NULL,
+    `phone` VARCHAR(30) NULL,
+    `role` ENUM('USER', 'ADMIN') NOT NULL DEFAULT 'USER',
+    `created_at` DATETIME NOT NULL,
+    `updated_at` DATETIME NULL,
+    PRIMARY KEY (`user_id`)
+);
+
+CREATE TABLE `agent_profile` (
+    `user_id` BIGINT NOT NULL,
+    `license_no` VARCHAR(100) NOT NULL,
+    `verification_status` ENUM('PENDING', 'APPROVED', 'REJECTED') NOT NULL DEFAULT 'PENDING',
+    `rejection_reason` VARCHAR(255) NULL,
+    `created_at` DATETIME NOT NULL,
+    `updated_at` DATETIME NULL,
+    PRIMARY KEY (`user_id`)
+);
+
+CREATE TABLE `space` (
+    `space_id` BIGINT NOT NULL,
+    `agent_id` BIGINT NOT NULL,
+    `title` VARCHAR(100) NOT NULL,
+    `address` VARCHAR(255) NOT NULL,
+    `area` DOUBLE NULL,
+    `deposit` INT NULL,
+    `monthly_rent` INT NULL,
+    `maintenance_fee` INT NULL,
+    `room_type` VARCHAR(50) NULL,
+    `available_date` DATE NULL,
+    `status` VARCHAR(20) NULL,
+    `living_environment_info` TEXT NULL,
+    `created_at` DATETIME NOT NULL,
+    `updated_at` DATETIME NULL,
+    PRIMARY KEY (`space_id`)
+);
+
+CREATE TABLE `space_image` (
+    `image_id` BIGINT NOT NULL,
+    `space_id` BIGINT NOT NULL,
+    `image_order` INT NOT NULL,
+    `image_url` VARCHAR(500) NOT NULL,
+    PRIMARY KEY (`image_id`)
+);
+
+CREATE TABLE `three_d_model` (
+    `model_id` BIGINT NOT NULL,
+    `space_id` BIGINT NOT NULL,
+    `model_url` VARCHAR(500) NOT NULL,
+    `status` VARCHAR(20) NOT NULL,
+    `created_at` DATETIME NULL,
+    PRIMARY KEY (`model_id`)
+);
+
+CREATE TABLE `chat_room` (
+    `chat_room_id` BIGINT NOT NULL,
+    `space_id` BIGINT NOT NULL,
+    `tenant_id` BIGINT NOT NULL,
+    `created_at` DATETIME NOT NULL,
+    PRIMARY KEY (`chat_room_id`)
+);
+
+CREATE TABLE `chat_message` (
+    `message_id` BIGINT NOT NULL,
+    `chat_room_id` BIGINT NOT NULL,
+    `sender_id` BIGINT NOT NULL,
+    `message` TEXT NOT NULL,
+    `sent_at` DATETIME NOT NULL,
+    PRIMARY KEY (`message_id`)
+);
+
+CREATE TABLE `favorite` (
+    `favorite_id` BIGINT NOT NULL,
+    `user_id` BIGINT NOT NULL,
+    `space_id` BIGINT NOT NULL,
+    `created_at` DATETIME NOT NULL,
+    PRIMARY KEY (`favorite_id`)
+);
+
+CREATE TABLE `furniture_placement` (
+    `placement_id` BIGINT NOT NULL,
+    `user_id` BIGINT NOT NULL,
+    `space_id` BIGINT NOT NULL,
+    `layout_data` JSON NULL,
+    `preview_image_url` VARCHAR(500) NULL,
+    `created_at` DATETIME NOT NULL,
+    `updated_at` DATETIME NULL,
+    PRIMARY KEY (`placement_id`)
+);
+
+CREATE TABLE `report` (
+    `report_id` BIGINT NOT NULL,
+    `space_id` BIGINT NOT NULL,
+    `summary` TEXT NULL,
+    `created_at` DATETIME NOT NULL,
+    `updated_at` DATETIME NULL,
+    PRIMARY KEY (`report_id`)
+);
+
+ALTER TABLE `agent_profile`
+ADD CONSTRAINT `FK_USER_TO_AGENT_PROFILE`
+FOREIGN KEY (`user_id`)
+REFERENCES `user` (`user_id`);
+
+ALTER TABLE `space`
+ADD CONSTRAINT `FK_USER_TO_SPACE_AGENT`
+FOREIGN KEY (`agent_id`)
+REFERENCES `user` (`user_id`);
+
+ALTER TABLE `space_image`
+ADD CONSTRAINT `FK_SPACE_TO_SPACE_IMAGE`
+FOREIGN KEY (`space_id`)
+REFERENCES `space` (`space_id`);
+
+ALTER TABLE `three_d_model`
+ADD CONSTRAINT `FK_SPACE_TO_THREE_D_MODEL`
+FOREIGN KEY (`space_id`)
+REFERENCES `space` (`space_id`);
+
+ALTER TABLE `chat_room`
+ADD CONSTRAINT `FK_SPACE_TO_CHAT_ROOM`
+FOREIGN KEY (`space_id`)
+REFERENCES `space` (`space_id`);
+
+ALTER TABLE `chat_room`
+ADD CONSTRAINT `FK_USER_TO_CHAT_ROOM_TENANT`
+FOREIGN KEY (`tenant_id`)
+REFERENCES `user` (`user_id`);
+
+ALTER TABLE `chat_room`
+ADD CONSTRAINT `uk_chat_rooms_space_tenant`
+UNIQUE (`space_id`, `tenant_id`);
+
+ALTER TABLE `chat_message`
+ADD CONSTRAINT `FK_CHAT_ROOM_TO_CHAT_MESSAGE`
+FOREIGN KEY (`chat_room_id`)
+REFERENCES `chat_room` (`chat_room_id`);
+
+ALTER TABLE `chat_message`
+ADD CONSTRAINT `FK_USER_TO_CHAT_MESSAGE_SENDER`
+FOREIGN KEY (`sender_id`)
+REFERENCES `user` (`user_id`);
+
+ALTER TABLE `favorite`
+ADD CONSTRAINT `FK_USER_TO_FAVORITE`
+FOREIGN KEY (`user_id`)
+REFERENCES `user` (`user_id`);
+
+ALTER TABLE `favorite`
+ADD CONSTRAINT `FK_SPACE_TO_FAVORITE`
+FOREIGN KEY (`space_id`)
+REFERENCES `space` (`space_id`);
+
+ALTER TABLE `favorite`
+ADD CONSTRAINT `uk_favorites_user_space`
+UNIQUE (`user_id`, `space_id`);
+
+ALTER TABLE `furniture_placement`
+ADD CONSTRAINT `FK_USER_TO_FURNITURE_PLACEMENT`
+FOREIGN KEY (`user_id`)
+REFERENCES `user` (`user_id`);
+
+ALTER TABLE `furniture_placement`
+ADD CONSTRAINT `FK_SPACE_TO_FURNITURE_PLACEMENT`
+FOREIGN KEY (`space_id`)
+REFERENCES `space` (`space_id`);
+
+ALTER TABLE `report`
+ADD CONSTRAINT `FK_SPACE_TO_REPORT`
+FOREIGN KEY (`space_id`)
+REFERENCES `space` (`space_id`);
+
+ALTER TABLE `report`
+ADD CONSTRAINT `uk_reports_space`
+UNIQUE (`space_id`);
