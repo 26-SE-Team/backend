@@ -1,7 +1,7 @@
 package com.stayview.backend.domain.user.service;
 
-import com.stayview.backend.common.error.BusinessException;
-import com.stayview.backend.common.error.ErrorCode;
+import com.stayview.backend.core.common.error.BusinessException;
+import com.stayview.backend.core.common.error.ErrorCode;
 import com.stayview.backend.domain.space.dto.SpaceResponse;
 import com.stayview.backend.domain.space.repository.FavoriteRepository;
 import com.stayview.backend.domain.user.dto.UserResponse;

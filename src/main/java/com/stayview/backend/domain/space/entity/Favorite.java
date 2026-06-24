@@ -1,7 +1,7 @@
-package com.stayview.backend.space.entity;
+package com.stayview.backend.domain.space.entity;
 
-import com.stayview.backend.common.BaseTimeEntity;
-import com.stayview.backend.user.entity.User;
+import com.stayview.backend.core.common.BaseTimeEntity;
+import com.stayview.backend.domain.user.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,10 +14,12 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @Builder
+@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Table(name = "favorites")
 public class Favorite extends BaseTimeEntity {
@@ -35,4 +37,8 @@ public class Favorite extends BaseTimeEntity {
 	@JoinColumn(name = "space_id", nullable = false)
 	private Space space;
 
+	public Favorite(User user, Space space) {
+		this.user = user;
+		this.space = space;
+	}
 }

@@ -1,4 +1,4 @@
-package com.stayview.backend.common.error;
+package com.stayview.backend.core.common.error;
 
 import org.springframework.http.HttpStatus;
 

@@ -1,6 +1,6 @@
-package com.stayview.backend.space.entity;
+package com.stayview.backend.domain.space.entity;
 
-import com.stayview.backend.common.BaseTimeEntity;
+import com.stayview.backend.core.common.BaseTimeEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

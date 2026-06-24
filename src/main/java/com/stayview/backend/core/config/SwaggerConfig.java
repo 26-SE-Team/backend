@@ -1,7 +1,7 @@
-package com.stayview.backend.config;
+package com.stayview.backend.core.config;
 
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-import io.swagger.v3.oas.annotations.security.SecurityScheme;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;

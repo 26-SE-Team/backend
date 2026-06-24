@@ -1,6 +1,6 @@
-package com.stayview.backend.user.repository;
+package com.stayview.backend.domain.user.repository;
 
-import com.stayview.backend.user.entity.User;
+import com.stayview.backend.domain.user.entity.User;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

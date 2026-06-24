@@ -1,4 +1,4 @@
-package com.stayview.backend.space.entity;
+package com.stayview.backend.domain.space.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,10 +12,12 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Builder
 @Getter
+@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Table(name = "space_images")
 public class SpaceImage {
@@ -34,4 +36,10 @@ public class SpaceImage {
 
 	@Column(name = "image_url", nullable = false, length = 500)
 	private String imageUrl;
+
+	public SpaceImage(Space space, int imageOrder, String imageUrl) {
+		this.space = space;
+		this.imageOrder = imageOrder;
+		this.imageUrl = imageUrl;
+	}
 }

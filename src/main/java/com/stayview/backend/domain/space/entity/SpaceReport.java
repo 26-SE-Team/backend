@@ -1,6 +1,6 @@
-package com.stayview.backend.space.entity;
+package com.stayview.backend.domain.space.entity;
 
-import com.stayview.backend.common.BaseTimeEntity;
+import com.stayview.backend.core.common.BaseTimeEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,10 +13,12 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @Builder
+@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Table(name = "reports")
 public class SpaceReport extends BaseTimeEntity {
@@ -33,5 +35,10 @@ public class SpaceReport extends BaseTimeEntity {
 	@Column(name = "summary", columnDefinition = "text")
 	private String summary;
 
-
+	public static SpaceReport registrationReport(Space space) {
+		return SpaceReport.builder()
+			.space(space)
+			.summary("등록 신고")
+			.build();
+	}
 }

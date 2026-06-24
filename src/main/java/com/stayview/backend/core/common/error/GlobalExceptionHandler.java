@@ -1,6 +1,6 @@
-package com.stayview.backend.common.error;
+package com.stayview.backend.core.common.error;
 
-import com.stayview.backend.common.response.ApiResponse;
+import com.stayview.backend.core.common.response.ApiResponse;
 import java.util.stream.Collectors;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;

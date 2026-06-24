@@ -1,8 +1,8 @@
-package com.stayview.backend.chat.entity;
+package com.stayview.backend.domain.chat.entity;
 
-import com.stayview.backend.common.BaseTimeEntity;
-import com.stayview.backend.space.entity.Space;
-import com.stayview.backend.user.entity.User;
+import com.stayview.backend.core.common.BaseTimeEntity;
+import com.stayview.backend.domain.space.entity.Space;
+import com.stayview.backend.domain.user.entity.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

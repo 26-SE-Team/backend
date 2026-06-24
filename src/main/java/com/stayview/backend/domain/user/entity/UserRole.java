@@ -1,4 +1,4 @@
-package com.stayview.backend.user.entity;
+package com.stayview.backend.domain.user.entity;
 
 public enum UserRole {
 	USER,

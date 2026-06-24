@@ -1,6 +1,6 @@
-package com.stayview.backend.auth.service;
+package com.stayview.backend.core.auth.service;
 
-import com.stayview.backend.auth.dto.AuthResponse;
+import com.stayview.backend.core.auth.dto.AuthResponse;
 import com.stayview.backend.domain.user.dto.UserResponse;
 import com.stayview.backend.domain.user.entity.SocialType;
 import com.stayview.backend.domain.user.entity.User;

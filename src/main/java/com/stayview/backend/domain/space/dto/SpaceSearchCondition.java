@@ -1,6 +1,6 @@
-package com.stayview.backend.space.dto;
+package com.stayview.backend.domain.space.dto;
 
-import com.stayview.backend.space.entity.SpaceStatus;
+import com.stayview.backend.domain.space.entity.SpaceStatus;
 
 public record SpaceSearchCondition(
 	String keyword,

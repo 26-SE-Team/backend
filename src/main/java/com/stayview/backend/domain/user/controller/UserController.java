@@ -1,10 +1,10 @@
-package com.stayview.backend.user.controller;
+package com.stayview.backend.domain.user.controller;
 
-import com.stayview.backend.common.response.ApiResponse;
-import com.stayview.backend.space.dto.SpaceResponse;
-import com.stayview.backend.user.dto.UserResponse;
-import com.stayview.backend.user.dto.UserUpdateRequest;
-import com.stayview.backend.user.service.UserService;
+import com.stayview.backend.core.common.response.ApiResponse;
+import com.stayview.backend.domain.space.dto.SpaceResponse;
+import com.stayview.backend.domain.user.dto.UserResponse;
+import com.stayview.backend.domain.user.dto.UserUpdateRequest;
+import com.stayview.backend.domain.user.service.UserService;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,7 +1,7 @@
-package com.stayview.backend.space.entity;
+package com.stayview.backend.domain.space.entity;
 
-import com.stayview.backend.common.BaseTimeEntity;
-import com.stayview.backend.user.entity.User;
+import com.stayview.backend.core.common.BaseTimeEntity;
+import com.stayview.backend.domain.user.entity.User;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -15,11 +15,20 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
+@Builder
+@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Table(name = "spaces")
 public class Space extends BaseTimeEntity {
 
@@ -58,17 +67,42 @@ public class Space extends BaseTimeEntity {
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status", nullable = false, length = 20)
+	@Builder.Default
 	private SpaceStatus status = SpaceStatus.AVAILABLE;
 
 	@Column(name = "living_environment_info", columnDefinition = "text")
 	private String livingEnvironmentInfo;
 
 	@OneToMany(mappedBy = "space", cascade = CascadeType.ALL, orphanRemoval = true)
+	@Builder.Default
 	private List<SpaceImage> images = new ArrayList<>();
 
-	protected Space() {
+	public Space(User agent, String title, String address, Double area, Integer deposit, Integer monthlyRent, Integer maintenanceFee, String roomType, LocalDate availableDate, String livingEnvironmentInfo) {
+		this.agent = agent;
+		this.title = title;
+		this.address = address;
+		this.area = area;
+		this.deposit = deposit;
+		this.monthlyRent = monthlyRent;
+		this.maintenanceFee = maintenanceFee;
+		this.roomType = roomType;
+		this.availableDate = availableDate;
+		this.status = SpaceStatus.AVAILABLE;
+		this.livingEnvironmentInfo = livingEnvironmentInfo;
 	}
 
+	public void update(String title, String address, Double area, Integer deposit, Integer monthlyRent, Integer maintenanceFee, String roomType, LocalDate availableDate, SpaceStatus status, String livingEnvironmentInfo) {
+		this.title = title;
+		this.address = address;
+		this.area = area;
+		this.deposit = deposit;
+		this.monthlyRent = monthlyRent;
+		this.maintenanceFee = maintenanceFee;
+		this.roomType = roomType;
+		this.availableDate = availableDate;
+		this.status = status;
+		this.livingEnvironmentInfo = livingEnvironmentInfo;
+	}
 
 	public void replaceImages(List<String> imageUrls) {
 		images.clear();

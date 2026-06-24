@@ -1,6 +1,6 @@
-package com.stayview.backend.chat.repository;
+package com.stayview.backend.domain.chat.repository;
 
-import com.stayview.backend.chat.entity.ChatRoom;
+import com.stayview.backend.domain.chat.entity.ChatRoom;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 

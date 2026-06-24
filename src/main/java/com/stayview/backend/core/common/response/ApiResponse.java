@@ -1,4 +1,4 @@
-package com.stayview.backend.common.response;
+package com.stayview.backend.core.common.response;
 
 public record ApiResponse<T>(
 	String status,

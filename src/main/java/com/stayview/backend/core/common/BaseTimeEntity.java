@@ -1,4 +1,4 @@
-package com.stayview.backend.common;
+package com.stayview.backend.core.common;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

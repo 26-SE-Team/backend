@@ -1,4 +1,4 @@
-package com.stayview.backend.common.error;
+package com.stayview.backend.core.common.error;
 
 public class BusinessException extends RuntimeException {
 

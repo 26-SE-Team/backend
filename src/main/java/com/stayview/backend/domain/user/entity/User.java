@@ -1,6 +1,6 @@
-package com.stayview.backend.user.entity;
+package com.stayview.backend.domain.user.entity;
 
-import com.stayview.backend.common.BaseTimeEntity;
+import com.stayview.backend.core.common.BaseTimeEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,12 +12,14 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.time.Instant;
 
 @Entity
 @Getter
 @Builder
+@NoArgsConstructor(access = lombok.AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Table(name = "users")
 public class User extends BaseTimeEntity {
@@ -45,13 +47,29 @@ public class User extends BaseTimeEntity {
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "role", nullable = false, length = 20)
+	@Builder.Default
 	private UserRole role = UserRole.USER;
 
 	@Column(name = "is_deleted", nullable = false)
+	@Builder.Default
 	private boolean deleted = false;
 
 	@Column(name = "deleted_at")
 	private Instant deletedAt;
+
+	public static User socialUser(SocialType socialType, String email, String name) {
+		UserBuilder builder = User.builder()
+			.socialType(socialType)
+			.name(name)
+			.role(UserRole.USER)
+			.deleted(false);
+		if (socialType == SocialType.GOOGLE) {
+			builder.googleEmail(email);
+		} else if (socialType == SocialType.KAKAO) {
+			builder.kakaoEmail(email);
+		}
+		return builder.build();
+	}
 
 	public boolean isDeleted() {
 		return deleted;

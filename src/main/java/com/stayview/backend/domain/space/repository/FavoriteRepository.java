@@ -1,6 +1,6 @@
-package com.stayview.backend.space.repository;
+package com.stayview.backend.domain.space.repository;
 
-import com.stayview.backend.space.entity.Favorite;
+import com.stayview.backend.domain.space.entity.Favorite;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
